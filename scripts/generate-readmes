@@ -1,0 +1,184 @@
+#!/usr/bin/env python3
+
+import json
+import os
+import shutil
+import subprocess
+import tempfile
+from multiprocessing.pool import Pool
+
+from PIL import Image as PillowImage
+
+
+class Image:
+
+    @classmethod
+    def thumbnail(cls, args):
+
+        source, target, size = args
+
+        if os.path.exists(target):
+            return
+
+        print(f"Generating thumbnail for {source}")
+
+        scratch = tempfile.mkdtemp(prefix="lnxpcs-")
+        resized = os.path.join(scratch, "resized.png")
+
+        cls._resize(source, resized, size)
+        cls._optimise(resized, target)
+
+        shutil.rmtree(scratch)
+
+    @classmethod
+    def _resize(cls, source, target, size):
+        try:
+            im = PillowImage.open(source)
+            im.thumbnail(size)
+            im.save(target, "PNG")
+        except IOError:
+            print(f"Thumbnail creation failed for {source}")
+
+    @classmethod
+    def _optimise(cls, source, target):
+        subprocess.Popen(
+            ["optipng", "-o7", source, "-out", target],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL
+        ).wait()
+
+
+class Prettifier:
+
+    ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    THUMB_SIZE = (256, 256)
+
+    def __init__(self, columns, threads=None):
+
+        self.columns = columns
+
+        self.threads = threads or int(
+            subprocess.check_output(["nproc"]).strip())
+
+    def _generate_headers(self):
+        return "| {} |\n| {} |\n".format(
+            " | ".join(["" for _ in range(self.columns)]),
+            " | ".join([":---:" for _ in range(self.columns)])
+        )
+
+    def _generate_image_cell(self, path, base):
+        return "![{name}]({path})".format(
+            name=path.replace(".png", ""),
+            path=os.path.join(".meta", "thumbnails", path)
+        )
+
+    def _generate_text_cell(self, path, base):
+        """
+        Look for a file called ``support.json`` in the ``.meta`` subdirectory
+        if it's there, it should have the following format:
+
+        {
+          image-name: {
+            "shirt": "https://url.to/shirt",
+            "mug": "https://hurl.to/mug",
+            ...
+          },
+        }
+
+        Using this file as a guide, we generate the relevant text bits.
+        """
+
+        name = path.replace(".png", "")
+        r = "[{name}]({path})".format(
+            name=name.replace("-", " "),
+            path=os.path.join(base, path)
+        )
+
+        support = {}
+        try:
+            support_path = os.path.join(
+                self.ROOT,
+                base,
+                ".meta",
+                "support.json"
+            )
+            with open(support_path) as f:
+                support = json.load(f)[name]
+        except (FileNotFoundError, KeyError):
+            pass
+
+        for key, value in support.items():
+            r += f" ([{key}]({value}))"
+
+        return r
+
+    def _generate_thumbnails(self, sources):
+        args = []
+        for source in sources:
+            args.append((
+                source,
+                os.path.join(
+                    os.path.dirname(source),
+                    ".meta",
+                    "thumbnails",
+                    os.path.basename(source)),
+                self.THUMB_SIZE
+            ))
+        with Pool(processes=self.threads) as pool:
+            pool.map(Image.thumbnail, args)
+
+    def _generate_rows(self, paths, base):
+
+        this, remainder = paths[:self.columns], paths[self.columns:]
+
+        r = "| {} |\n| {} |\n".format(
+            " | ".join([self._generate_image_cell(p, base) for p in this]),
+            " | ".join([self._generate_text_cell(p, base) for p in this])
+        )
+
+        if remainder:
+            r += self._generate_rows(remainder, base)
+
+        return r
+
+    def generate(self, path):
+        return self._generate_headers() + self._generate_rows(
+            [_ for _ in os.listdir(path) if ".png" in _],
+            path.replace(self.ROOT + "/", "")
+        )
+
+    @classmethod
+    def _get_image_dirs(cls, path):
+
+        r = []
+        for path, _, files in os.walk(path):
+            if "." in path:
+                continue
+            for f in files:
+                if ".png" in f:
+                    r.append(path)
+                    break
+
+        return r
+
+    @classmethod
+    def main(cls, columns):
+
+        instance = cls(columns)
+
+        originals = []
+        for d in cls._get_image_dirs(cls.ROOT):
+
+            thumb_dir = os.path.join(d, ".meta", "thumbnails")
+            os.makedirs(thumb_dir, exist_ok=True)
+
+            with open(os.path.join(d, "README.md"), "w") as f:
+                f.write(instance.generate(d))
+
+            originals += [os.path.join(d, _) for _ in os.listdir(d) if ".png" in _]  # NOQA: E501
+
+        instance._generate_thumbnails(originals)
+
+
+if __name__ == "__main__":
+    Prettifier.main(4)
