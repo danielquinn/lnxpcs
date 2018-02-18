@@ -1,0 +1,16 @@
+|  |  |  |  |
+| :---: | :---: | :---: | :---: |
+| ![kernel-card-black](.meta/thumbnails/kernel-card-black.png) | ![tor-card-black](.meta/thumbnails/tor-card-black.png) | ![java-card-black](.meta/thumbnails/java-card-black.png) | ![debian-card-black](.meta/thumbnails/debian-card-black.png) |
+| [kernel card black](cards/black/kernel-card-black.png) | [tor card black](cards/black/tor-card-black.png) | [java card black](cards/black/java-card-black.png) | [debian card black](cards/black/debian-card-black.png) |
+| ![linuxmasterrace-card-black](.meta/thumbnails/linuxmasterrace-card-black.png) | ![vim-card-black](.meta/thumbnails/vim-card-black.png) | ![php-card-black](.meta/thumbnails/php-card-black.png) | ![gnu-linux-card-black](.meta/thumbnails/gnu-linux-card-black.png) |
+| [linuxmasterrace card black](cards/black/linuxmasterrace-card-black.png) | [vim card black](cards/black/vim-card-black.png) | [php card black](cards/black/php-card-black.png) | [gnu linux card black](cards/black/gnu-linux-card-black.png) |
+| ![python-card-black](.meta/thumbnails/python-card-black.png) | ![swift-card-black](.meta/thumbnails/swift-card-black.png) | ![cron-card-black](.meta/thumbnails/cron-card-black.png) | ![root-card-black](.meta/thumbnails/root-card-black.png) |
+| [python card black](cards/black/python-card-black.png) | [swift card black](cards/black/swift-card-black.png) | [cron card black](cards/black/cron-card-black.png) | [root card black](cards/black/root-card-black.png) |
+| ![su-card-black](.meta/thumbnails/su-card-black.png) | ![freebsd-card-black](.meta/thumbnails/freebsd-card-black.png) | ![gnu-card-black](.meta/thumbnails/gnu-card-black.png) | ![arch-card-black](.meta/thumbnails/arch-card-black.png) |
+| [su card black](cards/black/su-card-black.png) | [freebsd card black](cards/black/freebsd-card-black.png) | [gnu card black](cards/black/gnu-card-black.png) | [arch card black](cards/black/arch-card-black.png) |
+| ![kill-card-black](.meta/thumbnails/kill-card-black.png) | ![userdel-card-black](.meta/thumbnails/userdel-card-black.png) | ![fedora-card-black](.meta/thumbnails/fedora-card-black.png) | ![kali-card-black](.meta/thumbnails/kali-card-black.png) |
+| [kill card black](cards/black/kill-card-black.png) | [userdel card black](cards/black/userdel-card-black.png) | [fedora card black](cards/black/fedora-card-black.png) | [kali card black](cards/black/kali-card-black.png) |
+| ![golang-card-black](.meta/thumbnails/golang-card-black.png) | ![iptables-card-black](.meta/thumbnails/iptables-card-black.png) | ![sudo-card-black](.meta/thumbnails/sudo-card-black.png) | ![solus-card-black](.meta/thumbnails/solus-card-black.png) |
+| [golang card black](cards/black/golang-card-black.png) | [iptables card black](cards/black/iptables-card-black.png) | [sudo card black](cards/black/sudo-card-black.png) | [solus card black](cards/black/solus-card-black.png) |
+| ![mint-card-black](.meta/thumbnails/mint-card-black.png) | ![gcc-card-black](.meta/thumbnails/gcc-card-black.png) | ![manjaro-card-black](.meta/thumbnails/manjaro-card-black.png) | ![ubuntu-card-black](.meta/thumbnails/ubuntu-card-black.png) |
+| [mint card black](cards/black/mint-card-black.png) | [gcc card black](cards/black/gcc-card-black.png) | [manjaro card black](cards/black/manjaro-card-black.png) | [ubuntu card black](cards/black/ubuntu-card-black.png) |

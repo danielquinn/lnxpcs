@@ -1,0 +1,6 @@
+|  |  |  |  |
+| :---: | :---: | :---: | :---: |
+| ![hexadecimal-python-2018-us-black](.meta/thumbnails/hexadecimal-python-2018-us-black.png) | ![hexadecimal-ubuntu-us-dark](.meta/thumbnails/hexadecimal-ubuntu-us-dark.png) | ![hexadecimal-arch-2018-us](.meta/thumbnails/hexadecimal-arch-2018-us.png) | ![hexadecimal-cron-us-white](.meta/thumbnails/hexadecimal-cron-us-white.png) |
+| [hexadecimal python 2018 us black](calendars/2018/us/hexadecimal-python-2018-us-black.png) | [hexadecimal ubuntu us dark](calendars/2018/us/hexadecimal-ubuntu-us-dark.png) | [hexadecimal arch 2018 us](calendars/2018/us/hexadecimal-arch-2018-us.png) | [hexadecimal cron us white](calendars/2018/us/hexadecimal-cron-us-white.png) |
+| ![hexadecimal-go-us-dark](.meta/thumbnails/hexadecimal-go-us-dark.png) | ![hexadecimal-cron-us-black](.meta/thumbnails/hexadecimal-cron-us-black.png) | ![hexadecimal-python-2018-us-white](.meta/thumbnails/hexadecimal-python-2018-us-white.png) |
+| [hexadecimal go us dark](calendars/2018/us/hexadecimal-go-us-dark.png) | [hexadecimal cron us black](calendars/2018/us/hexadecimal-cron-us-black.png) | [hexadecimal python 2018 us white](calendars/2018/us/hexadecimal-python-2018-us-white.png) |
