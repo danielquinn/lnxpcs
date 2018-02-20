@@ -91,7 +91,7 @@ class Prettifier:
         name = path.replace(".png", "")
         r = "[{name}]({path})".format(
             name=name.replace("-", " "),
-            path=os.path.join(base, path)
+            path=path
         )
 
         support = {}
@@ -143,7 +143,9 @@ class Prettifier:
 
     def generate(self, path):
         return self._generate_headers() + self._generate_rows(
-            [_ for _ in os.listdir(path) if ".png" in _],
+            sorted(
+                [_ for _ in os.listdir(path) if ".png" in _]
+            ),
             path.replace(self.ROOT + "/", "")
         )
 
